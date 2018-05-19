@@ -13,6 +13,7 @@ Use the [ShortLook](https://dynastic.co/shortlook) API to create plugins that pr
 3. Rename your main class (DD_RENAMETHIS_ContactPhotoProvider).
 4. Using the [Info.plist reference](#infoplist), change any values you may need to in `Info.plist`.
 5. Implement your logic inside your main class's `contactPhotoPromiseOfferForNotification:` method ([details](#provider-classes)).
+6. Configure your `Makefile` and `control` as you would a normal tweak, [using these tips](#metadata-tips).
 
 ## Provider Structure and Explanation
 
@@ -61,6 +62,11 @@ The promise object also features many properties, such as `usesCaching` and `bac
 ##### What if I can get my image instantly?
 
 If your image is returned instantly, rather than by using a network request, you can use a convenience method on `DDNotificationContactPhotoPromiseOffer`, named `offerInstantlyResolvingPromiseWithPhotoIdentifier:image:`. Just return the generated promise from your provider. Choose wisely, though. This method should only be used if you can get your image absolutely instantly. If you take too long using this synchronous method, ShortLook may penalize your provider.
+
+## Metadata Tips
+
+- Your package should usually be called something like "APP Photo Provider for ShortLook" in Cydia.
+- It is recommended you make your bundle name something like "ShortLook-APP".
 
 ## Full Documentation
 
