@@ -75,6 +75,9 @@
 /// Initialize a promise with the provided photo identifier.
 - (instancetype)initWithPhotoIdentifier:(NSString *)photoIdentifier;
 
+/// Create a promise offer that will return the image at the provided URL, if needed.
++ (instancetype)offerDownloadingPromiseWithPhotoIdentifier:(NSString *)photoIdentifier fromURL:(NSURL *)url;
+
 /// Create a promise offer that will instantly return the provided image.
 + (instancetype)offerInstantlyResolvingPromiseWithPhotoIdentifier:(NSString *)photoIdentifier image:(UIImage *)image;
 

@@ -8,3 +8,5 @@ output: docs
 clean: true
 objc: true
 umbrella_header: ShortLook-API.h
+theme: fullwidth
+framework_root: .
