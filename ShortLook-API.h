@@ -44,11 +44,9 @@
 - (NSDictionary *)applicationUserInfo;
 @end
 
+
 /// A promise representing a commitment to providing a contact icon for a notification.
 @interface DDNotificationContactPhotoPromise: NSObject
-/// A unique identifier for the photo that will be provided by this promise.
-@property (nonatomic, readonly, retain) NSString *photoIdentifier;
-
 /// The background colour to show for the contact photo view if the provided image contains any transparency.
 @property (nonatomic, retain) UIColor *backgroundColor;
 
@@ -58,11 +56,7 @@
 /// Whether or not this promise has already been resolved or rejected.
 @property (nonatomic, readonly, assign) BOOL isComplete;
 
-/// Initialize a promise with the provided photo identifier.
-- (instancetype)initWithPhotoIdentifier:(NSString *)photoIdentifier;
-
-/// Create a promise that will instantly return the provided image.
-+ (instancetype)instantlyResolvingPromiseWithPhotoIdentifier:(NSString *)photoIdentifier image:(UIImage *)image;
+// MARK: - Provider methods
 
 /// Resolve this promise with the provided image, notifying ShortLook that you have received your image.
 /// - NOTE: This method should only be ran from within `addResolver:`.
@@ -71,16 +65,28 @@
 /// Reject this promise, notifying ShortLook that you failed to receive an image.
 /// - NOTE: This method should only be ran from within `addResolver:`.
 - (void)reject;
+@end
 
-/// A block that will run if your image is needed (as it will not be in some cases, such as if your image is already cached by ShortLook).
+/// An offer to fulfill a promise representing a commitment to providing a contact icon for a notification.
+@interface DDNotificationContactPhotoPromiseOffer: NSObject
+/// A unique identifier for the photo that will be provided by this promise.
+@property (nonatomic, readonly, retain) NSString *photoIdentifier;
+
+/// Initialize a promise with the provided photo identifier.
+- (instancetype)initWithPhotoIdentifier:(NSString *)photoIdentifier;
+
+/// Create a promise offer that will instantly return the provided image.
++ (instancetype)offerInstantlyResolvingPromiseWithPhotoIdentifier:(NSString *)photoIdentifier image:(UIImage *)image;
+
+/// Add the block that will run if your image is needed (as it will not be in some cases, such as if your image is already cached by ShortLook).
 /// If your provider does any long-running or asynchronous operations, they should be done using this method.
 /// Any code run inside the provider block will be performed on a background thread.
-- (void)addResolver:(void (^)(void))resolver;
+- (void)fulfillWithBlock:(void (^)(DDNotificationContactPhotoPromise *promise))block;
 @end
 
 /// An object that can provide contact photos for ShortLook notifications.
 @protocol DDNotificationContactPhotoProviding <NSObject>
 @required
-/// Returns a promise to provide a contact photo for a notification.
-- (DDNotificationContactPhotoPromise *)contactPhotoPromiseForNotification:(NSObject<DDNotificationDisplayable> *)notification;
+/// Returns an offer to fulfill a promise to provide a contact photo for a notification.
+- (DDNotificationContactPhotoPromiseOffer *)contactPhotoPromiseOfferForNotification:(NSObject<DDNotificationDisplayable> *)notification;
 @end

@@ -37,6 +37,9 @@
                 <a href="Classes/DDNotificationContactPhotoPromise.html">DDNotificationContactPhotoPromise</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/DDNotificationContactPhotoPromiseOffer.html">DDNotificationContactPhotoPromiseOffer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/DDUserNotification.html">DDUserNotification</a>
               </li>
             </ul>
@@ -74,7 +77,7 @@
 <li><a href="https://www.github.com/dynastic/ShortLook-API-Template/archive/master.zip">Download the API template</a> and extract it&rsquo;s contents.</li>
 <li>Rename your main class (DD_RENAMETHIS_ContactPhotoProvider).</li>
 <li>Using the <a href="#infoplist">Info.plist reference</a>, change any values you may need to in <code>Info.plist</code>.</li>
-<li>Implement your logic inside your main class&rsquo;s <code>contactPhotoPromiseForNotification:</code> method (<a href="#provider-classes">details</a>).</li>
+<li>Implement your logic inside your main class&rsquo;s <code>contactPhotoPromiseOfferForNotification:</code> method (<a href="#provider-classes">details</a>).</li>
 </ol>
 <h2 id='provider-structure-and-explanation' class='heading'>Provider Structure and Explanation</h2>
 
@@ -102,8 +105,8 @@
 <p>You will make a class that inherits from <code>NSObject</code> and conforms to <code><a href="Protocols/DDNotificationContactPhotoProviding.html">DDNotificationContactPhotoProviding</a></code>. You should import <code>ShortLook-API.h</code> in your project for ease of use.</p>
 
 <p>Each provider class implements the following method:</p>
-<pre class="highlight objective_c"><code><span class="c1">/// Returns a promise to provide a contact photo for a notification.</span>
-<span class="k">-</span> <span class="p">(</span><span class="n">DDNotificationContactPhotoPromise</span> <span class="o">*</span><span class="p">)</span><span class="nf">contactPhotoPromiseForNotification</span><span class="p">:(</span><span class="n">NSObject</span><span class="o">&lt;</span><span class="n">DDNotificationDisplayable</span><span class="o">&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">notification</span><span class="p">;</span>
+<pre class="highlight objective_c"><code><span class="c1">/// Returns an offer to fulfill a promise to provide a contact photo for a notification.</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">DDNotificationContactPhotoPromiseOffer</span> <span class="o">*</span><span class="p">)</span><span class="nf">contactPhotoPromiseOfferForNotification</span><span class="p">:(</span><span class="n">NSObject</span><span class="o">&lt;</span><span class="n">DDNotificationDisplayable</span><span class="o">&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">notification</span><span class="p">;</span>
 </code></pre>
 
 <p>If you&rsquo;d like to see a working version, check out an <a href="https://www.github.com/dynastic/ShortLook-API-Template/blob/master/DD_RENAMETHIS_ContactPhotoProvider.m">example of a provider class here</a>.</p>
@@ -111,22 +114,18 @@
 <blockquote>
 <p><strong>Heads up!</strong> Make sure your provider&rsquo;s class is unique (rename it if you used an example). In Objective-C, there may only have one class for a name. If any other classes exist with that name, your provider will crash the system.</p>
 </blockquote>
-<h4 id='promises' class='heading'>Promises</h4>
+<h4 id='promises-and-offers' class='heading'>Promises and Offers</h4>
 
-<p>When ShortLook asks you for a photo, you first return an object called a <em>Promise</em>. While this promise doesn&rsquo;t directly contain your image at first, it is returned by your provider. It is, in most basic terms, a <em>promise</em> to provide a contact photo. Since most provider&rsquo;s images will take a while to get (network requests, etc.), this is necessary to ensure optimal performance.</p>
+<p>When ShortLook asks you for a photo, you first return an object called an <em>Offer</em> (if you don&rsquo;t want to provide for a notification, return <code>nil</code>). This offer is simple: you provide the photo identifier, and then set a block that will be called if ShortLook needs your provider. A parameter on this block you set is an object called a <em>Promise</em>. While this promise doesn&rsquo;t directly contain your image at first, it eventually will be used to contain one by your provider. It is, in most basic terms, a <em>promise</em> to provide a contact photo. Since most provider&rsquo;s images will take a while to get (network requests, etc.), this is necessary to ensure optimal performance.</p>
 
-<p>You initialize your promise with a <strong>photo identifier</strong>, which is a unique string for the contact photo you will provide, for internal use by ShortLook (such as caching, or choosing when to display the image). For the system contact photo provider, this identifier is the phone number or email address of the notification. For a provider like Twitter, it is the URL of the profile photo. For another social network, you may opt to use the photo&rsquo;s account&rsquo;s screen name, it that&rsquo;s more appropriate. Whatever your identifier be, just ensure it represents the photo you will return uniquely.</p>
+<p>You initialize your offer with a <strong>photo identifier</strong>, which is a unique string for the contact photo you will provide, for internal use by ShortLook (such as caching, or choosing when to display the image). For the system contact photo provider, this identifier is the phone number or email address of the notification. For a provider like Twitter, it is the URL of the profile photo. For another social network, you may opt to use the photo&rsquo;s account&rsquo;s screen name, it that&rsquo;s more appropriate. Whatever your identifier be, just ensure it represents the photo you will return uniquely.</p>
 
-<p>Once you have initialized your promise object, you can add a resolver using <code>addResolver:</code>. The block you provide here should contain every next operation for grabbing the contact photo, such as network requests. Once you have received your image, pass it back to ShortLook by calling <code>resolveWithImage:</code> on your promise. If an error occurs and you are not able to fetch a contact photo for the user, call <code>reject</code> on the promise. Once you&rsquo;ve resolved or rejected a promise, you may not do so it again, such as to change the image.</p>
-
-<blockquote>
-<p><strong>Heads up!</strong> You <strong>must</strong> run the <code>resolveWithImage:</code> or <code>reject</code> methods from inside the block given to <code>addResolver:</code>, or unexpected behaviour may result.</p>
-</blockquote>
+<p>Once you have initialized your offer object, you can add a resolver using <code>fulfillWithBlock:</code>. The block you provide here should contain every next operation for grabbing the contact photo, such as network requests. Once you have received your image, pass it back to ShortLook by calling <code>resolveWithImage:</code> on your promise, which is a parameter of your block. If an error occurs and you are not able to fetch a contact photo for the user, call <code>reject</code> on the promise. Once you&rsquo;ve resolved or rejected a promise, you may not do so it again, such as to change the image.</p>
 
 <p>The promise object also features many properties, such as <code>usesCaching</code> and <code>backgroundColor</code>, which can be set at any time before the promise is completed.</p>
 <h5 id='what-if-i-can-get-my-image-instantly' class='heading'>What if I can get my image instantly?</h5>
 
-<p>If your image is returned instantly, rather than by using a network request, you can use a convenience method on promise, named <code>instantlyResolvingPromiseWithPhotoIdentifier:image:</code>. Just return the generated promise from your provider. Choose wisely, though. This method should only be used if you can get your image absolutely instantly. If you take too long using this synchronous method, ShortLook may penalize your provider.</p>
+<p>If your image is returned instantly, rather than by using a network request, you can use a convenience method on <code><a href="Classes/DDNotificationContactPhotoPromiseOffer.html">DDNotificationContactPhotoPromiseOffer</a></code>, named <code>offerInstantlyResolvingPromiseWithPhotoIdentifier:image:</code>. Just return the generated promise from your provider. Choose wisely, though. This method should only be used if you can get your image absolutely instantly. If you take too long using this synchronous method, ShortLook may penalize your provider.</p>
 <h2 id='full-documentation' class='heading'>Full Documentation</h2>
 
 <p>You can view the full class documentation for ShortLook&rsquo;s photo provider API <a href="https://dynastic.github.io/ShortLook-API/">here</a>.</p>
