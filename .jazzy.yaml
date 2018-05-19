@@ -1,0 +1,10 @@
+module: ShortLook-API
+module_version: 1
+author_url: https://www.dynastic.co/
+author: Dynastic Development
+github_url: https://github.com/dynastic/ShortLook-API
+github_file_prefix: https://github.com/dynastic/ShortLook-API/tree/master
+output: docs
+clean: true
+objc: true
+umbrella_header: ShortLook-API.h

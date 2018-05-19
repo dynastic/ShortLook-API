@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ShortLook-API  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="ShortLook-API  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">ShortLook-API Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/dynastic/ShortLook-API"><img src="img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">ShortLook-API Reference</a>
+        <img id="carat" src="img/carat.png" />
+        ShortLook-API  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/DDAbstractNotification.html">DDAbstractNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/DDNotificationContactPhotoPromise.html">DDNotificationContactPhotoPromise</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/DDUserNotification.html">DDUserNotification</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/DDNotificationContactPhotoProviding.html">DDNotificationContactPhotoProviding</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/DDNotificationDisplayable.html">DDNotificationDisplayable</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='shortlook-contact-photo-provider-api' class='heading'>ShortLook: Contact Photo Provider API</h1>
+
+<p>Use the <a href="https://dynastic.co/shortlook">ShortLook</a> API to create plugins that provide contact icons for third-party applications to ShortLook.</p>
+
+<ul>
+<li><a href="https://dynastic.github.io/ShortLook-API/">Full Documentation</a></li>
+<li><a href="/ShortLook-API.h">API header</a></li>
+<li><a href="https://www.github.com/dynastic/ShortLook-API-Template/">API template</a></li>
+</ul>
+<h2 id='quick-start' class='heading'>Quick Start</h2>
+
+<ol>
+<li>Setup your development environment just as you would to make tweaks, including Theos.</li>
+<li><a href="https://www.github.com/dynastic/ShortLook-API-Template/archive/master.zip">Download the API template</a> and extract it&rsquo;s contents.</li>
+<li>Rename your main class (DD_RENAMETHIS_ContactPhotoProvider).</li>
+<li>Using the <a href="#infoplist">Info.plist reference</a>, change any values you may need to in <code>Info.plist</code>.</li>
+<li>Implement your logic inside your main class&rsquo;s <code>contactPhotoPromiseForNotification:</code> method (<a href="#provider-classes">details</a>).</li>
+</ol>
+<h2 id='provider-structure-and-explanation' class='heading'>Provider Structure and Explanation</h2>
+
+<p>Every provider plugin must have the following two things:</p>
+
+<ul>
+<li>An <code>Info.plist</code> file describing how ShortLook should register the provider: <a href="#infoplist">Documentation</a> <a href="https://www.github.com/dynastic/ShortLook-API-Template/blob/master/Info.plist">Example</a>.</li>
+<li>An executable with (a) class(es) conforming to <code><a href="Protocols/DDNotificationContactPhotoProviding.html">DDNotificationContactPhotoProviding</a></code>: <a href="#provider-classes">Documentation</a> <a href="https://www.github.com/dynastic/ShortLook-API-Template/blob/master/DD_RENAMETHIS_ContactPhotoProvider.m">Example</a></li>
+</ul>
+<h3 id='info-plist' class='heading'>Info.plist</h3>
+
+<p>The <code>Info.plist</code> file specifies to ShortLook how it should load and handle this provider plugin internally. Every Info.plist file should have the following keys:</p>
+
+<ul>
+<li><code>CFBundleDisplayName</code>, <strong>string</strong>: A short name for what this plugin provides. In most cases, it should just be the name of the app you are providing for (e.g., Twitter).</li>
+<li><code>DDNotificationExternalProviderClasses</code> <strong>dictionary</strong>: A dictionary of provider classes, and the bundle identifiers they provide for. The key should represent your class name, and it&rsquo;s value may be either a <strong>string</strong> or <strong>array of strings</strong> containing the bundle identifiers of apps to provide for.</li>
+<li><code>DDNotificationExternalProviderAPIVersion</code> <strong>integer</strong>: <em>Must equal 1.</em> The ShortLook API version to use. This is to ensure that future updates with potentially breaking API changes do not crash ShortLook. These will be rare, if ever, but exists for future-proofing.</li>
+</ul>
+
+<p>If you&rsquo;d like to see a working version, check out an <a href="https://www.github.com/dynastic/ShortLook-API-Template/blob/master/Info.plist">example of Info.plist here</a>.</p>
+<h3 id='provider-classes' class='heading'>Provider classes</h3>
+
+<p>Now that you&rsquo;ve declared how ShortLook should load your plugin, you can start implementing the operations to receive contact photos.</p>
+
+<p>You will make a class that inherits from <code>NSObject</code> and conforms to <code><a href="Protocols/DDNotificationContactPhotoProviding.html">DDNotificationContactPhotoProviding</a></code>. You should import <code>ShortLook-API.h</code> in your project for ease of use.</p>
+
+<p>Each provider class implements the following method:</p>
+<pre class="highlight objective_c"><code><span class="c1">/// Returns a promise to provide a contact photo for a notification.</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">DDNotificationContactPhotoPromise</span> <span class="o">*</span><span class="p">)</span><span class="nf">contactPhotoPromiseForNotification</span><span class="p">:(</span><span class="n">NSObject</span><span class="o">&lt;</span><span class="n">DDNotificationDisplayable</span><span class="o">&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">notification</span><span class="p">;</span>
+</code></pre>
+
+<p>If you&rsquo;d like to see a working version, check out an <a href="https://www.github.com/dynastic/ShortLook-API-Template/blob/master/DD_RENAMETHIS_ContactPhotoProvider.m">example of a provider class here</a>.</p>
+
+<blockquote>
+<p><strong>Heads up!</strong> Make sure your provider&rsquo;s class is unique (rename it if you used an example). In Objective-C, there may only have one class for a name. If any other classes exist with that name, your provider will crash the system.</p>
+</blockquote>
+<h4 id='promises' class='heading'>Promises</h4>
+
+<p>When ShortLook asks you for a photo, you first return an object called a <em>Promise</em>. While this promise doesn&rsquo;t directly contain your image at first, it is returned by your provider. It is, in most basic terms, a <em>promise</em> to provide a contact photo. Since most provider&rsquo;s images will take a while to get (network requests, etc.), this is necessary to ensure optimal performance.</p>
+
+<p>You initialize your promise with a <strong>photo identifier</strong>, which is a unique string for the contact photo you will provide, for internal use by ShortLook (such as caching, or choosing when to display the image). For the system contact photo provider, this identifier is the phone number or email address of the notification. For a provider like Twitter, it is the URL of the profile photo. For another social network, you may opt to use the photo&rsquo;s account&rsquo;s screen name, it that&rsquo;s more appropriate. Whatever your identifier be, just ensure it represents the photo you will return uniquely.</p>
+
+<p>Once you have initialized your promise object, you can add a resolver using <code>addResolver:</code>. The block you provide here should contain every next operation for grabbing the contact photo, such as network requests. Once you have received your image, pass it back to ShortLook by calling <code>resolveWithImage:</code> on your promise. If an error occurs and you are not able to fetch a contact photo for the user, call <code>reject</code> on the promise. Once you&rsquo;ve resolved or rejected a promise, you may not do so it again, such as to change the image.</p>
+
+<blockquote>
+<p><strong>Heads up!</strong> You <strong>must</strong> run the <code>resolveWithImage:</code> or <code>reject</code> methods from inside the block given to <code>addResolver:</code>, or unexpected behaviour may result.</p>
+</blockquote>
+
+<p>The promise object also features many properties, such as <code>usesCaching</code> and <code>backgroundColor</code>, which can be set at any time before the promise is completed.</p>
+<h5 id='what-if-i-can-get-my-image-instantly' class='heading'>What if I can get my image instantly?</h5>
+
+<p>If your image is returned instantly, rather than by using a network request, you can use a convenience method on promise, named <code>instantlyResolvingPromiseWithPhotoIdentifier:image:</code>. Just return the generated promise from your provider. Choose wisely, though. This method should only be used if you can get your image absolutely instantly. If you take too long using this synchronous method, ShortLook may penalize your provider.</p>
+<h2 id='full-documentation' class='heading'>Full Documentation</h2>
+
+<p>You can view the full class documentation for ShortLook&rsquo;s photo provider API <a href="https://dynastic.github.io/ShortLook-API/">here</a>.</p>
+<h2 id='examples' class='heading'>Examples</h2>
+
+<p>You can look at the following open source provider examples to get an idea of how to use the ShortLook API:</p>
+
+<ul>
+<li><a href="https://www.github.com/dynastic/ShortLook-API-Template/">Blank Template</a></li>
+<li><a href="https://www.github.com/dynastic/ShortLook-Twitter/">Twitter</a></li>
+</ul>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://www.dynastic.co/" target="_blank" rel="external">Dynastic Development</a>. All rights reserved. (Last updated: 2018-05-19)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
