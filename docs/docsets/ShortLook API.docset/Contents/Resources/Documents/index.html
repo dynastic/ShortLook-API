@@ -78,14 +78,22 @@
 <li>Rename your main class (DD_RENAMETHIS_ContactPhotoProvider).</li>
 <li>Using the <a href="#infoplist">Info.plist reference</a>, change any values you may need to in <code>Info.plist</code>.</li>
 <li>Implement your logic inside your main class&rsquo;s <code>contactPhotoPromiseOfferForNotification:</code> method (<a href="#provider-classes">details</a>).</li>
+<li>Configure your <code>Makefile</code> and <code>control</code> as you would a normal tweak, <a href="#metadata-tips">using these tips</a>.</li>
 </ol>
+<h2 id='photo-recommendations' class='heading'>Photo Recommendations</h2>
+
+<ul>
+<li>Any format supported by iOS.</li>
+<li>Around 1:1 in aspect ratio (or else it will be zoomed in).</li>
+<li>Above <code>152x152px</code> in size (<code>@3x</code>, preferably).</li>
+</ul>
 <h2 id='provider-structure-and-explanation' class='heading'>Provider Structure and Explanation</h2>
 
 <p>Every provider plugin must have the following two things:</p>
 
 <ul>
 <li>An <code>Info.plist</code> file describing how ShortLook should register the provider: <a href="#infoplist">Documentation</a> <a href="https://www.github.com/dynastic/ShortLook-API-Template/blob/master/Info.plist">Example</a>.</li>
-<li>An executable with (a) class(es) conforming to <code><a href="Protocols/DDNotificationContactPhotoProviding.html">DDNotificationContactPhotoProviding</a></code>: <a href="#provider-classes">Documentation</a> <a href="https://www.github.com/dynastic/ShortLook-API-Template/blob/master/DD_RENAMETHIS_ContactPhotoProvider.m">Example</a></li>
+<li>An executable with (a) class(es) conforming to <code><a href="Protocols/DDNotificationContactPhotoProviding.html">DDNotificationContactPhotoProviding</a></code>: <a href="#provider-classes">Documentation</a> <a href="https://www.github.com/dynastic/ShortLook-API-Template/blob/master/RENAMETHISContactPhotoProvider.m">Example</a></li>
 </ul>
 <h3 id='info-plist' class='heading'>Info.plist</h3>
 
@@ -109,7 +117,7 @@
 <span class="k">-</span> <span class="p">(</span><span class="n">DDNotificationContactPhotoPromiseOffer</span> <span class="o">*</span><span class="p">)</span><span class="nf">contactPhotoPromiseOfferForNotification</span><span class="p">:(</span><span class="n">NSObject</span><span class="o">&lt;</span><span class="n">DDNotificationDisplayable</span><span class="o">&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">notification</span><span class="p">;</span>
 </code></pre>
 
-<p>If you&rsquo;d like to see a working version, check out an <a href="https://www.github.com/dynastic/ShortLook-API-Template/blob/master/DD_RENAMETHIS_ContactPhotoProvider.m">example of a provider class here</a>.</p>
+<p>If you&rsquo;d like to see a working version, check out an <a href="https://www.github.com/dynastic/ShortLook-API-Template/blob/master/RENAMETHISContactPhotoProvider.m">example of a provider class here</a>.</p>
 
 <blockquote>
 <p><strong>Heads up!</strong> Make sure your provider&rsquo;s class is unique (rename it if you used an example). In Objective-C, there may only have one class for a name. If any other classes exist with that name, your provider will crash the system.</p>
@@ -126,6 +134,12 @@
 <h5 id='what-if-i-can-get-my-image-instantly' class='heading'>What if I can get my image instantly?</h5>
 
 <p>If your image is returned instantly, rather than by using a network request, you can use a convenience method on <code><a href="Classes/DDNotificationContactPhotoPromiseOffer.html">DDNotificationContactPhotoPromiseOffer</a></code>, named <code>offerInstantlyResolvingPromiseWithPhotoIdentifier:image:</code>. Just return the generated promise from your provider. Choose wisely, though. This method should only be used if you can get your image absolutely instantly. If you take too long using this synchronous method, ShortLook may penalize your provider.</p>
+<h2 id='metadata-tips' class='heading'>Metadata Tips</h2>
+
+<ul>
+<li>Your package should usually be called something like <q>APP Photo Provider for ShortLook</q> in Cydia.</li>
+<li>It is recommended you make your bundle name something like <q>ShortLook-APP</q>.</li>
+</ul>
 <h2 id='full-documentation' class='heading'>Full Documentation</h2>
 
 <p>You can view the full class documentation for ShortLook&rsquo;s photo provider API <a href="https://dynastic.github.io/ShortLook-API/">here</a>.</p>

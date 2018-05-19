@@ -15,12 +15,18 @@ Use the [ShortLook](https://dynastic.co/shortlook) API to create plugins that pr
 5. Implement your logic inside your main class's `contactPhotoPromiseOfferForNotification:` method ([details](#provider-classes)).
 6. Configure your `Makefile` and `control` as you would a normal tweak, [using these tips](#metadata-tips).
 
+## Photo Recommendations
+
+- Any format supported by iOS.
+- Around 1:1 in aspect ratio (or else it will be zoomed in).
+- Above `152x152px` in size (`@3x`, preferably).
+
 ## Provider Structure and Explanation
 
 Every provider plugin must have the following two things:
 
 - An `Info.plist` file describing how ShortLook should register the provider: [Documentation](#infoplist) [Example](https://www.github.com/dynastic/ShortLook-API-Template/blob/master/Info.plist).
-- An executable with (a) class(es) conforming to `DDNotificationContactPhotoProviding`: [Documentation](#provider-classes) [Example](https://www.github.com/dynastic/ShortLook-API-Template/blob/master/DD_RENAMETHIS_ContactPhotoProvider.m)
+- An executable with (a) class(es) conforming to `DDNotificationContactPhotoProviding`: [Documentation](#provider-classes) [Example](https://www.github.com/dynastic/ShortLook-API-Template/blob/master/RENAMETHISContactPhotoProvider.m)
 
 ### Info.plist
 
@@ -45,7 +51,7 @@ Each provider class implements the following method:
 - (DDNotificationContactPhotoPromiseOffer *)contactPhotoPromiseOfferForNotification:(NSObject<DDNotificationDisplayable> *)notification;
 ```
 
-If you'd like to see a working version, check out an [example of a provider class here](https://www.github.com/dynastic/ShortLook-API-Template/blob/master/DD_RENAMETHIS_ContactPhotoProvider.m).
+If you'd like to see a working version, check out an [example of a provider class here](https://www.github.com/dynastic/ShortLook-API-Template/blob/master/RENAMETHISContactPhotoProvider.m).
 
 > **Heads up!** Make sure your provider's class is unique (rename it if you used an example). In Objective-C, there may only have one class for a name. If any other classes exist with that name, your provider will crash the system.
 
