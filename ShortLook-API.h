@@ -15,35 +15,26 @@
 #import <UIKit/UIKit.h>
 @class NCNotificationRequest, UNNotificationContent;
 
-/// An object that can be displayed by ShortLook as a notification.
-@protocol DDNotificationDisplayable <NSObject>
-@required
-/// A unique identifier representing the sender of this notification, such as the application bundle identifier.
-- (NSString *)senderIdentifier;
-@end
-
-/// A ShortLook-displayable notification representing an abstract notification.
-@interface DDAbstractNotification : NSObject <DDNotificationDisplayable>
+/// A ShortLook-displayable notification representing a real user notification sent by an application to the system.
+@interface DDUserNotification : NSObject
 /// A custom notification title, separate from the application's title.
 @property (nonatomic, retain) NSString *notificationTitle;
 
 /// A dictionary of any extra information included by ShortLook.
 @property (nonatomic, retain) NSDictionary *userInfo;
 
+/// The system notification request that created this notification.
+@property (nonatomic, readonly, retain) NCNotificationRequest *request;
+
+/// The user notification's content, sent by the application.
+- (UNNotificationContent *)content;
+
+/// A dictionary of any extra information provided by the application sending the notification.
+- (NSDictionary *)applicationUserInfo;
+
 /// The bundle identifier of the application this notification represents.
 - (NSString *)senderIdentifier;
 @end
-
-/// A ShortLook-displayable notification representing a real user notification sent by an application to the system.
-@interface DDUserNotification : DDAbstractNotification
-/// The system notification request that created this notification.
-@property (nonatomic, readonly, retain) NCNotificationRequest *request;
-/// The user notification's content, sent by the application.
-- (UNNotificationContent *)content;
-/// A dictionary of any extra information provided by the application sending the notification.
-- (NSDictionary *)applicationUserInfo;
-@end
-
 
 /// A promise representing a commitment to providing a contact icon for a notification.
 @interface DDNotificationContactPhotoPromise: NSObject
@@ -91,5 +82,5 @@
 @protocol DDNotificationContactPhotoProviding <NSObject>
 @required
 /// Returns an offer to fulfill a promise to provide a contact photo for a notification.
-- (DDNotificationContactPhotoPromiseOffer *)contactPhotoPromiseOfferForNotification:(NSObject<DDNotificationDisplayable> *)notification;
+- (DDNotificationContactPhotoPromiseOffer *)contactPhotoPromiseOfferForNotification:(DDUserNotification *)notification;
 @end

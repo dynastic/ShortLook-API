@@ -48,7 +48,7 @@ Each provider class implements the following method:
 
 ```objc
 /// Returns an offer to fulfill a promise to provide a contact photo for a notification.
-- (DDNotificationContactPhotoPromiseOffer *)contactPhotoPromiseOfferForNotification:(NSObject<DDNotificationDisplayable> *)notification;
+- (DDNotificationContactPhotoPromiseOffer *)contactPhotoPromiseOfferForNotification:(DDUserNotification *)notification;
 ```
 
 If you'd like to see a working version, check out an [example of a provider class here](https://www.github.com/dynastic/ShortLook-API-Template/blob/master/RENAMETHISContactPhotoProvider.m).

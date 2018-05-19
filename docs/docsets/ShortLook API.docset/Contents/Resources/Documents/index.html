@@ -53,9 +53,6 @@
             <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/DDAbstractNotification.html">DDAbstractNotification</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/DDNotificationContactPhotoPromise.html">DDNotificationContactPhotoPromise</a>
               </li>
               <li class="nav-group-task">
@@ -71,9 +68,6 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/DDNotificationContactPhotoProviding.html">DDNotificationContactPhotoProviding</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/DDNotificationDisplayable.html">DDNotificationDisplayable</a>
               </li>
             </ul>
           </li>
@@ -137,7 +131,7 @@
 
 <p>Each provider class implements the following method:</p>
 <pre class="highlight objective_c"><code><span class="c1">/// Returns an offer to fulfill a promise to provide a contact photo for a notification.</span>
-<span class="k">-</span> <span class="p">(</span><span class="n">DDNotificationContactPhotoPromiseOffer</span> <span class="o">*</span><span class="p">)</span><span class="nf">contactPhotoPromiseOfferForNotification</span><span class="p">:(</span><span class="n">NSObject</span><span class="o">&lt;</span><span class="n">DDNotificationDisplayable</span><span class="o">&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">notification</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">DDNotificationContactPhotoPromiseOffer</span> <span class="o">*</span><span class="p">)</span><span class="nf">contactPhotoPromiseOfferForNotification</span><span class="p">:(</span><span class="n">DDUserNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">notification</span><span class="p">;</span>
 </code></pre>
 
 <p>If you&rsquo;d like to see a working version, check out an <a href="https://www.github.com/dynastic/ShortLook-API-Template/blob/master/RENAMETHISContactPhotoProvider.m">example of a provider class here</a>.</p>
