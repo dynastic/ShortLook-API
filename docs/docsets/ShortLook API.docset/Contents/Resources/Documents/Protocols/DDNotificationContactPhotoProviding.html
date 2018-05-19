@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>DDNotificationDisplayable Protocol Reference</title>
+    <title>DDNotificationContactPhotoProviding Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,19 +10,19 @@
     
   </head>
   <body>
-    <a name="//apple_ref/objc/Protocol/DDNotificationDisplayable" class="dashAnchor"></a>
-    <a title="DDNotificationDisplayable Protocol Reference"></a>
+    <a name="//apple_ref/objc/Protocol/DDNotificationContactPhotoProviding" class="dashAnchor"></a>
+    <a title="DDNotificationContactPhotoProviding Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ShortLook-API Docs</a> (100% documented)</p>
+        <p><a href="../index.html">ShortLook API Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/dynastic/ShortLook-API"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
-        <a href="../index.html">ShortLook-API Reference</a>
+        <a href="../index.html">ShortLook API Reference</a>
         <img id="carat" src="../img/carat.png" />
-        DDNotificationDisplayable Protocol Reference
+        DDNotificationContactPhotoProviding Protocol Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -58,14 +58,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>DDNotificationDisplayable</h1>
+            <h1>DDNotificationContactPhotoProviding</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight objective_c"><code><span class="k">@protocol</span> <span class="nc">DDNotificationDisplayable</span></code></pre>
+                  <pre class="highlight objective_c"><code><span class="k">@protocol</span> <span class="nc">DDNotificationContactPhotoProviding</span></code></pre>
 
                 </div>
               </div>
-            <p>An object that can be displayed by ShortLook as a notification.</p>
+            <p>An object that can provide contact photos for ShortLook notifications.</p>
 
           </section>
           <section class="section task-group-section">
@@ -74,9 +74,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:objc(pl)DDNotificationDisplayable(im)senderIdentifier"></a>
-                    <a name="//apple_ref/objc/Method/-senderIdentifier" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(pl)DDNotificationDisplayable(im)senderIdentifier">-senderIdentifier</a>
+                    <a name="/c:objc(pl)DDNotificationContactPhotoProviding(im)contactPhotoPromiseForNotification:"></a>
+                    <a name="//apple_ref/objc/Method/-contactPhotoPromiseForNotification:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)DDNotificationContactPhotoProviding(im)contactPhotoPromiseForNotification:">-contactPhotoPromiseForNotification:</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -84,24 +84,25 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A unique identifier representing the sender of this notification, such as the application bundle identifier.</p>
+                        <p>Returns a promise to provide a contact photo for a notification.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">senderIdentifier</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n"><a href="../Classes/DDNotificationContactPhotoPromise.html">DDNotificationContactPhotoPromise</a></span> <span class="o">*</span><span class="p">)</span><span class="nf">contactPhotoPromiseForNotification</span><span class="p">:</span>
+    <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nv">notification</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">senderIdentifier</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">contactPhotoPromise</span><span class="p">(</span><span class="n">forNotification</span> <span class="nv">notification</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/DDNotificationContactPhotoPromise.html">DDNotificationContactPhotoPromise</a></span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L22">Show on GitHub</a>
+                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L85">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
