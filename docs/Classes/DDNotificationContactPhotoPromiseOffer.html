@@ -60,6 +60,9 @@
                 <a class="nav-group-task-link" href="../Classes/DDNotificationContactPhotoPromiseOffer.html">DDNotificationContactPhotoPromiseOffer</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/DDNotificationContactPhotoSettings.html">DDNotificationContactPhotoSettings</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/DDUserNotification.html">DDUserNotification</a>
               </li>
             </ul>
@@ -124,7 +127,42 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L64">Show on GitHub</a>
+                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L70">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)DDNotificationContactPhotoPromiseOffer(py)titleOverride"></a>
+                    <a name="//apple_ref/objc/Property/titleOverride" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)DDNotificationContactPhotoPromiseOffer(py)titleOverride">titleOverride</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A string to replace the notification&rsquo;s title with, if it is required for your provider&rsquo;s context.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">titleOverride</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">titleOverride</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">Int32</span><span class="o">&gt;!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L73">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -159,7 +197,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L67">Show on GitHub</a>
+                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L76">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -195,7 +233,47 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L70">Show on GitHub</a>
+                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L79">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)DDNotificationContactPhotoPromiseOffer(cm)offerDownloadingPromiseWithPhotoIdentifier:fromURL:withSettings:"></a>
+                    <a name="//apple_ref/objc/Method/+offerDownloadingPromiseWithPhotoIdentifier:fromURL:withSettings:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)DDNotificationContactPhotoPromiseOffer(cm)offerDownloadingPromiseWithPhotoIdentifier:fromURL:withSettings:">+offerDownloadingPromiseWithPhotoIdentifier:fromURL:withSettings:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a promise offer that will return the image at the provided URL, if needed, with custom settings.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span>
+<span class="nf">offerDownloadingPromiseWithPhotoIdentifier</span><span class="p">:(</span><span class="n">id</span><span class="p">)</span><span class="nv">photoIdentifier</span>
+                                   <span class="nf">fromURL</span><span class="p">:(</span><span class="n">id</span><span class="p">)</span><span class="nv">url</span>
+                              <span class="nf">withSettings</span><span class="p">:</span>
+                                  <span class="p">(</span><span class="n"><a href="../Classes/DDNotificationContactPhotoSettings.html">DDNotificationContactPhotoSettings</a></span> <span class="o">*</span><span class="p">)</span>
+                                      <span class="n">settings</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="n">convenience</span> <span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="n">downloadingPromiseWithPhotoIdentifier</span> <span class="nv">photoIdentifier</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">fromURL</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">with</span> <span class="nv">settings</span><span class="p">:</span> <span class="kt"><a href="../Classes/DDNotificationContactPhotoSettings.html">DDNotificationContactPhotoSettings</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L82">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -232,7 +310,47 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L73">Show on GitHub</a>
+                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L85">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)DDNotificationContactPhotoPromiseOffer(cm)offerInstantlyResolvingPromiseWithPhotoIdentifier:image:withSettings:"></a>
+                    <a name="//apple_ref/objc/Method/+offerInstantlyResolvingPromiseWithPhotoIdentifier:image:withSettings:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)DDNotificationContactPhotoPromiseOffer(cm)offerInstantlyResolvingPromiseWithPhotoIdentifier:image:withSettings:">+offerInstantlyResolvingPromiseWithPhotoIdentifier:image:withSettings:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a promise offer that will instantly return the provided image with custom settings.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span>
+<span class="nf">offerInstantlyResolvingPromiseWithPhotoIdentifier</span><span class="p">:(</span><span class="n">id</span><span class="p">)</span><span class="nv">photoIdentifier</span>
+                                            <span class="nf">image</span><span class="p">:(</span><span class="n">id</span><span class="p">)</span><span class="nv">image</span>
+                                     <span class="nf">withSettings</span><span class="p">:</span>
+                                         <span class="p">(</span><span class="n"><a href="../Classes/DDNotificationContactPhotoSettings.html">DDNotificationContactPhotoSettings</a></span> <span class="o">*</span><span class="p">)</span>
+                                             <span class="n">settings</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="n">convenience</span> <span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="n">instantlyResolvingPromiseWithPhotoIdentifier</span> <span class="nv">photoIdentifier</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="nv">image</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">,</span> <span class="n">with</span> <span class="nv">settings</span><span class="p">:</span> <span class="kt"><a href="../Classes/DDNotificationContactPhotoSettings.html">DDNotificationContactPhotoSettings</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L88">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -269,7 +387,7 @@ Any code run inside the provider block will be performed on a background thread.
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L78">Show on GitHub</a>
+                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L93">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -282,7 +400,7 @@ Any code run inside the provider block will be performed on a background thread.
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="https://www.dynastic.co/" target="_blank" rel="external">Dynastic Development</a>. All rights reserved. (Last updated: 2018-05-19)</p>
+      <p>&copy; 2018 <a class="link" href="https://www.dynastic.co/" target="_blank" rel="external">Dynastic Development</a>. All rights reserved. (Last updated: 2018-05-20)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

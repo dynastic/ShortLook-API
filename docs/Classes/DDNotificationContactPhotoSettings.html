@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>DDNotificationContactPhotoProviding Protocol Reference</title>
+    <title>DDNotificationContactPhotoSettings Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/objc/Protocol/DDNotificationContactPhotoProviding" class="dashAnchor"></a>
+    <a name="//apple_ref/objc/Class/DDNotificationContactPhotoSettings" class="dashAnchor"></a>
 
-    <a title="DDNotificationContactPhotoProviding Protocol Reference"></a>
+    <a title="DDNotificationContactPhotoSettings Class Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">ShortLook API Reference</a>
       <img class="carat" src="../img/carat.png" />
-      DDNotificationContactPhotoProviding Protocol Reference
+      DDNotificationContactPhotoSettings Class Reference
     </p>
 
     <div class="content-wrapper">
@@ -81,14 +81,14 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>DDNotificationContactPhotoProviding</h1>
+            <h1>DDNotificationContactPhotoSettings</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight objective_c"><code><span class="k">@protocol</span> <span class="nc">DDNotificationContactPhotoProviding</span></code></pre>
+                  <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">DDNotificationContactPhotoSettings</span></code></pre>
 
                 </div>
               </div>
-            <p>An object that can provide contact photos for ShortLook notifications.</p>
+            <p>An object representing settings for the photo to be provided by a promise.</p>
 
           </div>
         </section>
@@ -100,9 +100,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:objc(pl)DDNotificationContactPhotoProviding(im)contactPhotoPromiseOfferForNotification:"></a>
-                    <a name="//apple_ref/objc/Method/-contactPhotoPromiseOfferForNotification:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(pl)DDNotificationContactPhotoProviding(im)contactPhotoPromiseOfferForNotification:">-contactPhotoPromiseOfferForNotification:</a>
+                    <a name="/c:objc(cs)DDNotificationContactPhotoSettings(py)backgroundColor"></a>
+                    <a name="//apple_ref/objc/Property/backgroundColor" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)DDNotificationContactPhotoSettings(py)backgroundColor">backgroundColor</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -110,25 +110,59 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns an offer to fulfill a promise to provide a contact photo for a notification.</p>
+                        <p>The background colour to show for the contact photo view if the provided image contains any transparency.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n"><a href="../Classes/DDNotificationContactPhotoPromiseOffer.html">DDNotificationContactPhotoPromiseOffer</a></span> <span class="o">*</span><span class="p">)</span>
-<span class="nf">contactPhotoPromiseOfferForNotification</span><span class="p">:(</span><span class="n"><a href="../Classes/DDUserNotification.html">DDUserNotification</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">notification</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">UIColor</span> <span class="o">*</span><span class="n">backgroundColor</span></code></pre>
 
                         </div>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">contactPhotoPromiseOffer</span><span class="p">(</span><span class="k">for</span> <span class="nv">notification</span><span class="p">:</span> <span class="kt"><a href="../Classes/DDUserNotification.html">DDUserNotification</a></span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/DDNotificationContactPhotoPromiseOffer.html">DDNotificationContactPhotoPromiseOffer</a></span><span class="o">!</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">backgroundColor</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">Int32</span><span class="o">&gt;!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L100">Show on GitHub</a>
+                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L42">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)DDNotificationContactPhotoSettings(py)usesCaching"></a>
+                    <a name="//apple_ref/objc/Property/usesCaching" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)DDNotificationContactPhotoSettings(py)usesCaching">usesCaching</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether or not ShortLook should automatically cache icons returned by your provider with the same photo identifier for the same application.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="kt">int</span> <span class="n">usesCaching</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">usesCaching</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dynastic/ShortLook-API/tree/master/ShortLook-API.h#L45">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
