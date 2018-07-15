@@ -2,8 +2,8 @@
 
 ## Table of Contents
 
-- [Contact Photo Provider](#contact_photo_provider)
-- [Always-on Screen State Provider](#always-on_screen_state_provider)
+- [Contact Photo Provider](#contact-photo-provider)
+- [Always-on Screen State Provider](#always-on-screen-state-provider)
 
 ---
 
