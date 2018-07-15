@@ -1,4 +1,13 @@
-# ShortLook: Contact Photo Provider API
+# ShortLook API Reference
+
+## Table of Contents
+
+- [Contact Photo Provider](#contact_photo_provider)
+- [Always-on Screen State Provider](#always-on_screen_state_provider)
+
+---
+
+# Contact Photo Provider
 
 Use the [ShortLook](https://dynastic.co/shortlook) API to create plugins that provide contact icons for third-party applications to ShortLook.
 
@@ -84,3 +93,31 @@ You can look at the following open source provider examples to get an idea of ho
 
 - [Blank Template](https://www.github.com/dynastic/ShortLook-API-Template/)
 - [Twitter](https://www.github.com/dynastic/ShortLook-Twitter/)
+
+---
+
+# Always-on Screen State Provider
+
+Starting in version 1.0.2, ShortLook provides an external coordination API for non-Dynastic tweaks to use. It will allow these tweaks to provide the screen’s display on state, since some tweaks fake the screen being off on OLED phones.
+
+If your tweak keeps the screen on while the user would expect it to be off, ShortLook can obey this preference and behave like the screen is off.
+
+First, implement the following provider in a class where you wish to provide this information:
+
+```objc
+@protocol DDLunarScreenStateProvider <NSObject>
+@required
+/// If your tweak keeps the screen awake to provide an always-on experience but should act to Lunar like the display is off, return whether you want the screen to be treated as on or off here. If any single provider is returning NO for this, the screen will be treated as such.
+- (BOOL)isScreenOn;
+@end
+```
+
+Once you have implemented that, you must register an instance of this class using `DDLunarScreenStateManager`. You can call `registerScreenStateProvider:` on the shared manager to tell ShortLook to ask your provider before deciding how to treat the screen state, using the following header:
+
+```objc
+@interface DDLunarScreenStateManager: NSObject
++ (instancetype)sharedManager;
+- (void)registerScreenStateProvider:(NSObject<DDLunarScreenStateProvider> *)provider;
+- (void)deregisterScreenStateProvider:(NSObject<DDLunarScreenStateProvider> *)provider;
+@end
+```
