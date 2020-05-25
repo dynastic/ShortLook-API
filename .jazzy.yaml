@@ -1,6 +1,6 @@
 module: ShortLook API
-module_version: 1
-author_url: https://www.dynastic.co/
+module_version: 1.0.17
+author_url: https://dynastic.co/
 author: Dynastic Development
 github_url: https://github.com/dynastic/ShortLook-API
 github_file_prefix: https://github.com/dynastic/ShortLook-API/tree/master
