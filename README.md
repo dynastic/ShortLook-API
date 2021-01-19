@@ -121,3 +121,12 @@ Once you have implemented that, you must register an instance of this class usin
 - (void)deregisterScreenStateProvider:(NSObject<DDLunarScreenStateProvider> *)provider;
 @end
 ```
+
+**Do not check for the presence of ShortLook by checking the filesystem or other classes.** You can directly check that `DDLunarScreenStateManager` exists. ShortLook will hold a strong reference to your screen state provider until it is deregistered.
+
+```objc
+if (NSClassFromString(@"DDLunarScreenStateManager")) {
+    MyScreenStateProvider *provider = [MyScreenStateProvider new];
+    [[%c(DDLunarScreenStateManager) sharedManager] registerScreenStateProvider:provider];
+}
+```
